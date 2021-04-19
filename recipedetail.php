@@ -1,5 +1,8 @@
 <?php
-include 'nav.php'
+include 'nav.php';
+
+
+
 ?>
 <!doctype html>
 <html>
