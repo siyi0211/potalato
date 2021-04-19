@@ -34,7 +34,7 @@ include 'nav.php'
                              <div class="txt_field1">
                                  <label>Category:</label><br>
 
-                                 All about Ingredients
+                                 All about Ingredients !!
                                  <input type="checkbox" id="rcatergoryid" name="rcatergory[]" value="Main Dish"><br>
                                  Make it Better
                                  <input type="checkbox" id="rcatergoryid" name="rcatergory[]" value="Side Dish"><br>

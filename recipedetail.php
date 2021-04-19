@@ -12,6 +12,7 @@ include 'nav.php';
 <meta name="description" content="">
 <meta name="author" content="Yong Fen Yu">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+
 <title>Potalato</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
