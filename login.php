@@ -5,7 +5,7 @@ session_start();
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-   
+    echo $email;
 
     $query = $connection->prepare("SELECT * FROM users WHERE user_email = ?");
     $query -> execute([$email]);
@@ -26,3 +26,4 @@ else
 }
 
 ?>
+
