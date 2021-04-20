@@ -8,6 +8,8 @@
         $query -> execute([$recipeid]);
         $result = $query->fetch();
 
+    } else {
+        header("Location: potalatoweb.php");
     }
     
 
@@ -36,7 +38,7 @@
 include 'nav.php';
 
 ?>
-    <!content>
+    <!--content-->
     <div class="container-fluid">
         <div class="row bg-beige justify-content-center">
             <div class="col-10">

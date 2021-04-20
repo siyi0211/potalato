@@ -17,6 +17,15 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+<style>
+         pre {
+            white-space: pre-wrap;       /* Since CSS 2.1 /
+            white-space: -moz-pre-wrap;  / Mozilla, since 1999 /
+            white-space: -pre-wrap;      / Opera 4-6 /
+            white-space: -o-pre-wrap;    / Opera 7 /
+            word-wrap: break-word;       / Internet Explorer 5.5+ */
+         }
+    </style>
 <?php 
 	include 'nav.php';
 ?>
@@ -48,11 +57,11 @@
 			     </div>
 
 			     <div class="form-group">
-			        <input style="padding:60px 10px" type="text" class="form-control mr-sm-2" id="ingredients" placeholder="Ingredients" name="ingredients" required>
+			        <input style="white-space: pre-line" style="padding:60px 10px" type="text" class="form-control mr-sm-2" id="ingredients" placeholder="Ingredients" name="ingredients" required>
 			     </div>
 
                  <div class="form-group">
-                    <input style="padding:80px 10px" type="text" class="form-control mr-sm-2" id="directions" placeholder="Directions" name="directions" required>
+                    <input style="white-space: pre-line" style="padding:80px 10px" type="text" class="form-control mr-sm-2" id="directions" placeholder="Directions" name="directions" required>
                  </div>
 
                 <div class="form-group txt_field1">
