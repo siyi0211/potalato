@@ -1,5 +1,15 @@
 <?php
-include 'nav.php';
+
+    include 'connection.php';
+    if(isset($_GET['recipe_id'])){
+
+        $recipeid = $_GET['recipe_id'];
+        $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_id = ?");
+        $query -> execute([$recipeid]);
+        $result = $query->fetch();
+
+    }
+    
 
 ?>
 <!doctype html>
@@ -11,7 +21,7 @@ include 'nav.php';
 <meta name="author" content="Yong Fen Yu">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-<title>Potalato</title>
+<title><?php echo $result['recipe_name']?></title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/fontawesome-all.css">
@@ -22,37 +32,34 @@ include 'nav.php';
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-    
+<?php
+include 'nav.php';
+
+?>
     <!content>
     <div class="container-fluid">
         <div class="row bg-beige justify-content-center">
             <div class="col-10">
-                <heading1 class="py-0 my-0">Garlic Potatoes</heading1>
-                <p>By Ben Lee</p>
+                <heading1 class="py-0 my-0"><?php echo $result['recipe_name']?></heading1>
+                <p>By <?php echo $result['create_user']?></p>
                 <div class="row">
                     <div class="col-8">
-                    <img src="img/webimg/garlic-potatoes3.jpg" width="700px">
-                    <p>This Crispy Garlic Roasted Potatoes recipe is a simple way to roast potatoes. It looks impressive, tastes great and is always a hit! This recipe will ensure even first-timers get crispy tops and fluffy insides.</p>
+                    <img src="<?php echo ($result['recipe_img'])?>" width="700px">
+                    <p><?php echo ($result['recipe_description'])?></p>
                         <h2 class="heading2">Directions</h2>
-                        <h3 class="heading3">1.</h3>
-                        <h3>Preheat oven to 375 f/190c.</h3>
-                        <h3 class="heading3">2.</h3>
-                        <h3>Start with Slicing the potatoes about a 1/8 inch thick.</h3>
-                        <h3 class="heading3">3.</h3>
-                        <h3>In a small bowl, combine butter and oil. Brush the bottom of a round large baking dish with some of the butter/oil mixture. Coat the potatoes with the mixture.</h3>
-                        <h3 class="heading3">4.</h3>
-                        <h3>Arrange potato slices around the dish slightly overlapping. Wedge the thin-sliced garlic throughout and season well with salt and pepper. Bake until golden brown and the potatoes are cooked through.</h3>
-                        <h3 class="heading3">5.</h3>
-                        <h3>Bake until golden brown and the potatoes are cooked through.</h3>
+                        <h3 class="heading3"><p><?php 
+                        $directions = preg_replace("/\r\n|\r/", "<br />", $result['recipe_directions']);
+                        $directions = trim($directions);
+                        echo $directions;
+                        ?></p></h3>
                 </div>
                     <div class="col-4 text-center">
-                        <h4 class="heading3">Ingredients</h4>
-                        <p>3 tablespoons unsalted butter (melted)</p>
-                        <p>3 tablespoons extra-virgin olive oil</p>
-                        <p>4 pounds russet potatoes(peeled and thinly sliced)</p>
-                        <p>4 cloves garlic (thinly sliced lengthwise)</p>
-                        <p>coarse salt and fresh ground pepper</p>
-                        <p>A handful of fresh parsley (chopped)</p>
+                        <h4 class="heading3">Ingredients</h4><p>
+                        <?php 
+                        $ingredients = preg_replace("/\r\n|\r/", "<br />", $result['recipe_ingredients']);
+                        $ingredients = trim($ingredients);
+                        echo $ingredients;
+                        ?></p>
                         <button type="submit" class="btn button-color mt-3">Add to My Favourite</button>
                     </div>
                 </div>

@@ -11,13 +11,14 @@ session_start();
     justify-content: space-around;
   }
 </style>
+
     <nav class="navbar navbar-expand-sm bg-nav navbar-dark ">
         <a class="navbar-brand" href="potalatoweb.php"><img src="img/webimg/potalatologo.png" height="50px"></a>
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">All Recipes</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">All Recipes</a>
+                <a class="dropdown-item" href="recipepage.php">All Recipes</a>
                 <a class="dropdown-item" href="#">Main Dish</a>
                 <a class="dropdown-item" href="#">Side Dish</a>
                 <a class="dropdown-item" href="#">Soup</a>
