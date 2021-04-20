@@ -2,23 +2,27 @@
 
     include 'connection.php';
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-	echo 'in if';    
-	$username = $_POST["username"];
+	 
+        $username = $_POST["username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
-	
-	if($connection == null) {
-	echo '\n null';	
-	}
-	echo $username.$email.$password;
+        
         $hash_password = password_hash($password,PASSWORD_DEFAULT);
-	echo '\n'.$hash_password;
+        
         $query = $connection->prepare("INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)");
-	
+        
         $result = $query->execute([$username, $email, $hash_password]);
 
-	if ($result){
-            echo "Successfully Sign up.";
+        if ($result){
+
+            $query = $connection->prepare("SELECT * FROM users WHERE user_email = ?");
+            $query -> execute([$email]);
+            $result_get = $query->fetch();
+
+            session_start();
+            $_SESSION["user_id"] = $result_get['user_id'];
+            $_SESSION["user_name"] = $result_get['user_name'];
+            
             header("Location:potalatoweb.php");
         }
         else
