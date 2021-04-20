@@ -1,31 +1,4 @@
-<?php
-    include_once('connection.php');
-    
-    if(isset($_GET['recipe_id'])){
 
-        $recipeid = $_GET['recipe_id'];
-        $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_id = ?");
-        $query -> execute([$recipeid]);
-        $result = $query->fetch();
-        
-        $favourite_button = "Add to My Favourite";
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-            $query = $connection -> prepare("SELECT * FROM `my favourite` WHERE user_id = ? AND recipe_id = ?");
-            $query -> execute([$user_id, $recipeid]);
-            $result = $query -> fetch();
-
-            if ($result) {
-                $favourite_button = "Remove from My Favourite";
-            }
-        }
-
-    } else {
-        header("Location: potalatoweb.php");
-    }
-    
-
-?>
 <!doctype html>
 <html>
 <head>
@@ -59,7 +32,32 @@
     }
 </style>
 <?php
-include 'nav.php';
+    include 'nav.php';
+    include_once('connection.php');
+        
+    if(isset($_GET['recipe_id'])){
+
+        $recipeid = $_GET['recipe_id'];
+        $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_id = ?");
+        $query -> execute([$recipeid]);
+        $result = $query->fetch();
+        
+        $favourite_button = "Add to My Favourite";
+        if (isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
+            $stmt = $connection -> prepare("SELECT * FROM `my favourite` WHERE user_id = ? AND recipe_id = ?");
+            $stmt -> execute([$user_id, $recipeid]);
+            $data = $stmt -> fetch();
+            if ($data) {
+                echo $user_id . "+" . $recipeid;
+                $favourite_button = "Remove from My Favourite";
+            }
+        }
+
+    } else {
+        header("Location: potalatoweb.php");
+    }
+
 ?>
     <!--content-->
     <div class="container-fluid">
