@@ -38,12 +38,6 @@ include 'nav.php'
                   <div class="col text-center px-0 my-0 py-4">
                       <heading1 class="py-0 my-0">All Recipes</heading1>
                       <div class="search-container">
-                          <form action="/action_page.php">
-                              <input type="text" placeholder="Search" style="padding: 10px">
-                              <button class="btn button-color" type="submit">
-                                  <img src="img/webimg/iconfinder_-_Magnifier-Search-Zoom-_3844467.png" height="30px">
-                              </button>
-                          </form>
                       </div>
                   </div>
               </div>
