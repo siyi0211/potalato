@@ -19,11 +19,11 @@ session_start();
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">All Recipes</a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="recipepage.php">All Recipes</a>
-                <a class="dropdown-item" href="#">Main Dish</a>
-                <a class="dropdown-item" href="#">Side Dish</a>
-                <a class="dropdown-item" href="#">Soup</a>
-                <a class="dropdown-item" href="#">Salad</a>
-                <a class="dropdown-item" href="#">Appetizer and Snacks</a>
+                <a class="dropdown-item" href="search.php?sortCatogory=Main Dish">Main Dish</a>
+                <a class="dropdown-item" href="search.php?sortCatogory=Side Dish">Side Dish</a>
+                <a class="dropdown-item" href="search.php?sortCatogory=Soup">Soup</a>
+                <a class="dropdown-item" href="search.php?sortCatogory=Salad">Salad</a>
+                <a class="dropdown-item" href="search.php?sortCatogory=Appetizer and Snacks">Appetizer and Snacks</a>
               </div>
           </li>
         </ul>
@@ -31,9 +31,9 @@ session_start();
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Cooking Styles</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Vegetarian</a>
-              <a class="dropdown-item" href="#">Asian style</a>
-              <a class="dropdown-item" href="#">Western style</a>
+              <a class="dropdown-item" href="search.php?sortCookingStyle=Vegetarian">Vegetarian</a>
+              <a class="dropdown-item" href="search.php?sortCookingStyle=Asian style">Asian style</a>
+              <a class="dropdown-item" href="search.php?sortCookingStyle=Western style">Western style</a>
             </div>
           </li>
         </ul>
