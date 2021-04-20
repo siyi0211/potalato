@@ -2,7 +2,7 @@
 if (isset($_POST['submit'])) {
     echo "From Post";
 
-    $target_folder = "/img/uploads/recipes";
+    $target_folder = "/img/uploads/recipes/";
 
     $isEverythingOK = true;
 
@@ -13,11 +13,12 @@ if (isset($_POST['submit'])) {
     $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     $new_image_filename = $target_folder . $file_name . time() . "." . $file_extension;
-
+    
     if ($file_extension != "jpg" && $file_extension != "webp" && $file_extension != "png" && $file_extension != "gif") {
         echo "Sorry, image only";
         $isEverythingOK = false;
-    } else if ($_FILES["imageToUpload"]["name"]) {
+    } 
+    if ($_FILES["imageToUpload"]["size"] > 100000000) {
         echo "File too big";
         $isEverythingOK = false;
     }
