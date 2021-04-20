@@ -1,3 +1,9 @@
+<?php
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: potalatoweb.php");
+    }
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -32,6 +38,8 @@
 
 			     <form action="new_recipe.php" method="post" variable="temporary storage=$">
 			     
+                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_name']; ?>">
+                
 			     <div class="form-group">	
 			        <input type="text" class="form-control mr-sm-2" id="recipe_name" placeholder="Recipe Name" name="recipe_name" required>
 			     </div>
