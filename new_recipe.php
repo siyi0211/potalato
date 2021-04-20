@@ -45,6 +45,7 @@ if (isset($_POST['submit'])) {
 
         if ($result) {
             echo "Successful";
+            header("Location:potalatoweb.php");
         } else {
             echo "Failed";
         }

@@ -48,11 +48,11 @@
 			     </div>
 
 			     <div class="form-group">
-			        <input style="padding:60px 10px" type="text" class="form-control mr-sm-2" id="ingredients" placeholder="Ingredients" name="ingredients" required>
+			        <input style="white-space: pre-line" style="padding:60px 10px" type="text" class="form-control mr-sm-2" id="ingredients" placeholder="Ingredients" name="ingredients" required>
 			     </div>
 
                  <div class="form-group">
-                    <input style="padding:80px 10px" type="text" class="form-control mr-sm-2" id="directions" placeholder="Directions" name="directions" required>
+                    <input style="white-space: pre-line" style="padding:80px 10px" type="text" class="form-control mr-sm-2" id="directions" placeholder="Directions" name="directions" required>
                  </div>
 
                 <div class="form-group txt_field1">
