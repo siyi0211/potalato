@@ -39,8 +39,8 @@ session_start();
         </ul>
 
         <form class="form-inline" action="search.php" method="get">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" value="">
-          <button class="btn button-color" type="submit" ><img src="img/webimg/iconfinder_-_Magnifier-Search-Zoom-_3844467.png" height="20px"></button>
+          <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search">
+          <button class="btn button-color" type="submit" value="search"><img src="img/webimg/iconfinder_-_Magnifier-Search-Zoom-_3844467.png" height="20px"></button>
         </form>
         
         <?php if (isset($_SESSION['user_id'])){ ?>
