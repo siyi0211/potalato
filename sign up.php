@@ -1,5 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Potalato</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/fontawesome-all.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</head>
+<?php 
+include 'nav.php'
+?>
 <?php
-    session_start();
     if (isset($_SESSION["user_id"])) {
         header("Location:potalatoweb.php");
     }
@@ -23,7 +41,6 @@
             $query -> execute([$email]);
             $result_get = $query->fetch();
 
-            session_start();
             $_SESSION["user_id"] = $result_get['user_id'];
             $_SESSION["user_name"] = $result_get['user_name'];
             
@@ -37,27 +54,6 @@
     
 
 ?>
-
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Potalato</title>
-
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/fontawesome-all.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-</head>
-<?php 
-include 'nav.php'
-?>
-
 <body>
     
     <div class="container-fluid">
