@@ -1,4 +1,6 @@
 <?php
+include 'connection.php';
+session_start();
 if (isset($_POST['submit'])) {
     echo "From Post";
 
@@ -45,8 +47,16 @@ if (isset($_POST['submit'])) {
 
         if ($result) {
             echo "Successful";
-            $last_id = $conn -> lastInsertId();
-            header("Location: recipedetail.php?recipe_id=".$last_id);
+            if(!isset($_SESSION['is_admin'])){
+
+                $last_id = $connection -> lastInsertId();
+                header("Location: recipedetail.php?recipe_id=".$last_id);
+            }
+            else{
+
+                header("Location:potalato_admin.php");
+            }
+            
         } else {
             echo "Failed";
         }

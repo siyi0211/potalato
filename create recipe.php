@@ -40,19 +40,23 @@
                 <input type="hidden" name="user_name" value="<?php echo $_SESSION['user_name']; ?>">
                 
 			     <div class="form-group">	
+                 <h2>Recipe Name: </h2>
 			        <input type="text" class="form-control mr-sm-2" id="recipe_name" placeholder="Recipe Name" name="recipe_name" required>
 			     </div>
 			     
 			     <div class="form-group">
-                    <input style="padding:40px 10px" type="text" class="form-control mr-sm-2" id="description" placeholder="Description" name="description" required>
+                 <h2>Decription: </h2>
+                    <textarea style="resize:none;" type="text" class="form-control mr-sm-2" id="description" placeholder="Description" name="description" rows="6"  required></textarea>
 			     </div>
 
 			     <div class="form-group">
-			        <input style="white-space: pre-line" style="padding:60px 10px" type="text" class="form-control mr-sm-2" id="ingredients" placeholder="Ingredients" name="ingredients" required>
+                 <h2>Ingredients: </h2>
+			        <textarea style="white-space: pre-line;resize:none;"  type="text" class="form-control mr-sm-2" id="ingredients" placeholder="Ingredients"  name="ingredients" rows="8"  required></textarea>
 			     </div>
 
                  <div class="form-group">
-                    <input style="white-space: pre-line" style="padding:80px 10px" type="text" class="form-control mr-sm-2" id="directions" placeholder="Directions" name="directions" required>
+                 <h2>Directions: </h2>
+                    <textarea style="white-space: pre-line;resize:none;"  type="text" class="form-control mr-sm-2" id="directions" placeholder="Directions" name="directions" rows="8"  required></textarea>
                  </div>
 
                 <div class="form-group txt_field1">
@@ -76,10 +80,6 @@
                     
                     <input type="radio" id="salad" name="recipe_category" value="Salad">
                     <label for="salad">Salad</label>
-                    <br>
-
-                    <input type="radio" id="appertizer_and_snacks" name="recipe_category" value="Appertizer and Snacks">
-                    <label for="appertizer_and_snacks">Appertizer and Snacks</label>
                     <br>
 
                 </div>
