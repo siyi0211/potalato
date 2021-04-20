@@ -1,10 +1,3 @@
-<?php
-    session_start();
-    if (!isset($_SESSION['user_name'])) {
-        header("Location: potalatoweb.php");
-    }
-?>
-
 <!doctype html>
 <html>
 <head>
@@ -26,6 +19,11 @@
 <body>
 <?php 
 	include 'nav.php';
+?>
+<?php
+    if (!isset($_SESSION['user_name'])) {
+        header("Location: potalatoweb.php");
+    }
 ?>
     <!-- Create Recipe -->
     <div class="container-fluid">
