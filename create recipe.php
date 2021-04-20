@@ -35,9 +35,9 @@
                 <!-- Create Recipe -->
 			     <heading1-1>Create Recipe</heading1-1>
 
-			     <form action="new_recipe.php" method="post" variable="temporary storage=$">
+			     <form action="new_recipe.php" method="post" enctype="multipart/form-data">
 			     
-                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_name']; ?>">
+                <input type="hidden" name="user_name" value="<?php echo $_SESSION['user_name']; ?>">
                 
 			     <div class="form-group">	
 			        <input type="text" class="form-control mr-sm-2" id="recipe_name" placeholder="Recipe Name" name="recipe_name" required>
