@@ -1,6 +1,4 @@
-<?php
-include 'nav.php'
-?>
+
 <!doctype html>
 <html>
 <head>
@@ -17,9 +15,11 @@ include 'nav.php'
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
+
+<?php
+include 'nav.php'
+?>
 <body>
-    
-    
     
     <!somethinglikeslideshow>
   <div class="container-fluid">
