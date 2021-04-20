@@ -2,17 +2,22 @@
 
     include 'connection.php';
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST["username"];
+	echo 'in if';    
+	$username = $_POST["username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+	
+	if($connection == null) {
+	echo '\n null';	
+	}
+	echo $username.$email.$password;
+        $hash_password = password_hash($password,PASSWORD_DEFAULT);
+	echo '\n'.$hash_password;
+        $query = $connection->prepare("INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)");
+	
+        $result = $query->execute([$username, $email, $hash_password]);
 
-        $encrypted_password = password_hash ($password,PASSWORD_DEFAULT);
-
-        $query = $connection->prepare('INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)');
-
-        $result = $query->execute([$username, $email, $encrypted_password]);
-
-        if ($result){
+	if ($result){
             echo "Successfully Sign up.";
             header("Location:potalatoweb.php");
         }
@@ -53,7 +58,7 @@ include 'nav.php'
                     <div class="row justify-content-center">
                         <div class="col-lg-6 text-center" style="padding: 20px">
                             <heading1-1>Sign Up</heading1-1><br><br>
-                            <form action="sign up.php"  method="post" variable="temporary storage=$">
+                            <form action="sign up.php"  method="post">
                                 <input type="text" class="form-control mr-sm-2" id="username" placeholder="username" name="username" required><br>
                                 <input type="text" class="form-control mr-sm-2" id="email" placeholder="email" name="email" required><br>
                                 <input type="password" class="form-control mr-sm-2" placeholder="password" name="password" required><br>
