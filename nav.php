@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-<html>
 <style>
   
   .navbar-expand-sm {
@@ -65,4 +64,4 @@ session_start();
             </li>
         </ul>
     </nav>
-</html>
+
