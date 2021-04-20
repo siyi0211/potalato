@@ -2,7 +2,7 @@
 if (isset($_POST['submit'])) {
     echo "From Post";
 
-    $target_folder = "/img/uploads/recipes/";
+    $target_folder = "img/webimg/";
 
     $isEverythingOK = true;
 
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
         $recipe_category = $_POST['recipe_category'];
         $cooking_style = $_POST['cooking_style'];
 
-        $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, cooking_style, recipe_directions, creator) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
 
         $result = $query -> execute([$recipe_name, $new_image_filename, $description, $ingredients, $recipe_category, $cooking_style, $directions, $user_name]);
 

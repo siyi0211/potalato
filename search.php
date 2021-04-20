@@ -90,7 +90,10 @@ if(isset($_GET['search']))
           <div class="row">
               <div class="col px-0">
                   <div class="col text-center px-0 my-0 py-4">
-                      <heading1 class="py-0 my-0"><?php echo $sortCatogory;?>
+                      <heading1 class="py-0 my-0"><?php echo $sortCatogory;
+                      if($query->fetch()== null){
+                          echo " - No result";
+                      }?>
                       </heading1>
                   </div>
               </div>
@@ -105,6 +108,8 @@ if(isset($_GET['search']))
                 <div class="container">
                     <div class="row">
                     <?php
+                        $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_category LIKE '$sortCatogory';");
+                        $query->execute();
                         while ($result = $query->fetch()){
                     ?>
                         <div class="col-3">
@@ -142,7 +147,10 @@ if(isset($_GET['search']))
           <div class="row">
               <div class="col px-0">
                   <div class="col text-center px-0 my-0 py-4">
-                      <heading1 class="py-0 my-0"><?php echo $sortCookingStyle;?>
+                      <heading1 class="py-0 my-0"><?php echo $sortCookingStyle;
+                      if($query->fetch()== null){
+                          echo " - No result";
+                      }?>
                       </heading1>
                   </div>
               </div>
@@ -157,6 +165,8 @@ if(isset($_GET['search']))
                 <div class="container">
                     <div class="row">
                     <?php
+                        $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_cooking_style LIKE '$sortCookingStyle';");
+                        $query->execute();
                         while ($result = $query->fetch()){
                     ?>
                         <div class="col-3">
