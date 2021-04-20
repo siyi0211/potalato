@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -83,7 +82,7 @@
                         $ingredients = trim($ingredients);
                         echo $ingredients;
                         ?></p>
-                        <a href="favourite.php?" class="button"><?php echo $favourite_button; ?></a>
+                        <button><a href="favourite.php?"><?php echo $favourite_button; ?></a></button>
                     </div>
                 </div>
             </div>
