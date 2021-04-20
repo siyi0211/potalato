@@ -82,7 +82,7 @@
                         $ingredients = trim($ingredients);
                         echo $ingredients;
                         ?></p>
-                        <button><a href="favourite.php?"><?php echo $favourite_button; ?></a></button>
+                        <button class="btn button-color mt-3"><a href="favourite.php?"><?php echo $favourite_button; ?></a></button>
                     </div>
                 </div>
             </div>
