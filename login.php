@@ -16,7 +16,13 @@
             $_SESSION["user_id"] = $result['user_id'];
             $_SESSION["user_name"] = $result['user_name'];
 
-            header("Location:potalatoweb.php");
+            if($result['is_admin'] == 1){
+                $_SESSION["is_admin"] = $result['is_admin'];
+                header("Location:potalato_admin.php");
+            }
+            else{
+                header("Location:potalatoweb.php");
+            }
         }
         else
         {
