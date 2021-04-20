@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -23,7 +22,7 @@ include 'nav.php'
 
 include 'connection.php';
 
-$query = $connection->prepare("SELECT * FROM recipe ORDER BY receipe_id DESC");
+$query = $connection->prepare("SELECT * FROM recipe ORDER BY recipe_id DESC LIMIT 4");
 $query -> execute();
 
 ?>
@@ -41,9 +40,9 @@ $query -> execute();
                             <div class="col text-center px-0 my-0 py-4">
                                 <heading1 class="py-0 my-0">Find A Recipe</heading1>
                                 <div class="search-container">
-                                    <form action="/action_page.php">
-                                        <input type="text" placeholder="Search">
-                                        <button class="btn button-color" type="submit">
+                                    <form action="search.php" method="get">
+                                        <input type="text" placeholder="Search" name="search">
+                                        <button class="btn button-color" type="submit" value="search">
                                             <img src="img/webimg/iconfinder_-_Magnifier-Search-Zoom-_3844467.png" height="30px">
                                         </button>
                                     </form>
@@ -58,31 +57,91 @@ $query -> execute();
     
     <!content>
     <div class="container-fluid">
-        <div class="col-4 text-center">
+        <div class="text-center">
             <div class="row">
                 <div class="col">
-                    <h2 class="heading2">Newest</h2>
-                        <div class="card">
-                            <img class="card-img-top" src="img/webimg/RFO-1400x919-Tomato--oregano-potato-bake-af4855ca-d7e0-4b83-991c-8b329b4b4736-0-1400x919.jpg" alt="Card image" height="200px">
-                            <div class="card-body">
-                                <h4 class="card-title">Baked potato with tomato</h4>
-                                <a href="#" class="stretched-link"></a>
+                    <br><h2 class="heading2">Newest</h2><br>
+                    <div class="container-fluid">
+                        <div class="row  justify-content-center">
+                            <div class="col-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <?php
+                                            while ($result = $query->fetch()){
+                                        ?>
+                                        <div class="col-3">
+                                            <div class="card">
+                                                <img class="card-img-top" src="<?php echo ($result['recipe_img'])?>" alt="Card image" height="200px">
+                                                <div class="card-body">
+                                                    <h4 class="card-title"><?php echo $result['recipe_name']?></h4>
+                                                    <a href="recipedetail.php?recipe_id=<?php echo ($result['recipe_id'])?>" class="stretched-link"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php 
+                                            }
+                                        ?> 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    
-                    <h2 class="heading2">Most Popular</h2>
-                        <div class="card">
-                            <img class="card-img-top" src="img/webimg/rosemary-roasted-potatoes-recipe-768x1152.jpg" alt="Card image" height="300px">
-                            <div class="card-body">
-                                <h4 class="card-title">Best Potato Wedges</h4>
-                                <a href="#" class="stretched-link"></a>
+                    </div>
+                    <br><br><br>
+                    <h2 class="heading2">Most Popular</h2><br>
+                    <div class="container-fluid">
+                        <div class="row  justify-content-center">
+                            <div class="col-10">
+                                <div class="container">
+                                    <div class="row">
+                                    <div class="col-3">
+                                        <div class="card">
+                                            <img class="card-img-top" src="img/webimg/rosemary-roasted-potatoes-recipe-768x1152.jpg" alt="Card image" height="300px">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Best Potato Wedges</h4>
+                                                <a href="#" class="stretched-link"></a>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                        <div class="col-3">
+                                            <div class="card">
+                                                <img class="card-img-top" src="img/webimg/rosemary-roasted-potatoes-recipe-768x1152.jpg" alt="Card image" height="300px">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Best Potato Wedges</h4>
+                                                    <a href="#" class="stretched-link"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="card">
+                                                <img class="card-img-top" src="img/webimg/rosemary-roasted-potatoes-recipe-768x1152.jpg" alt="Card image" height="300px">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Best Potato Wedges</h4>
+                                                    <a href="#" class="stretched-link"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="card">
+                                                <img class="card-img-top" src="img/webimg/rosemary-roasted-potatoes-recipe-768x1152.jpg" alt="Card image" height="300px">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Best Potato Wedges</h4>
+                                                    <a href="#" class="stretched-link"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                                            
                 </div>   
             </div>
         </div>
     </div>
-     
+     <br><br>
     
     <div class="row bg-nav pt-2">
         <div class="col-lg-12 text-center" style="padding: 20px"><p>&copy;all right deserved to How Jue Min</p></div>    
