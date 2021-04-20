@@ -45,7 +45,8 @@ if (isset($_POST['submit'])) {
 
         if ($result) {
             echo "Successful";
-            header("Location:potalatoweb.php");
+            $last_id = $conn -> lastInsertId();
+            header("Location: recipedetail.php?recipe_id=".$last_id);
         } else {
             echo "Failed";
         }
