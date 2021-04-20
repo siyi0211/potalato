@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if (isset($_SESSION["user_id"])) {
+        header("Location:potalatoweb.php");
+    }
 
     include 'connection.php';
     if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -63,9 +67,10 @@ include 'nav.php'
                         <div class="col-lg-6 text-center" style="padding: 20px">
                             <heading1-1>Sign Up</heading1-1><br><br>
                             <form action="sign up.php"  method="post">
-                                <input type="text" class="form-control mr-sm-2" id="username" placeholder="username" name="username" required><br>
-                                <input type="text" class="form-control mr-sm-2" id="email" placeholder="email" name="email" required><br>
-                                <input type="password" class="form-control mr-sm-2" placeholder="password" name="password" required><br>
+                                <input type="text" class="form-control mr-sm-2" id="username" placeholder="Username" name="username" required><br>
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <input type="text" class="form-control mr-sm-2" id="email" placeholder="Email" name="email" required><br>
+                                <input type="password" class="form-control mr-sm-2" placeholder="Password" name="password" required><br>
                                 <button type="submit" class="btn button-color mt-3">Create Account</button>
                             </form>
                         </div>
