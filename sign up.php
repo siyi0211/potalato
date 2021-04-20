@@ -19,7 +19,7 @@
 
 	if ($result){
             echo "Successfully Sign up.";
-            header("Location:potalatoweb.php");
+            header("Location: login.php");
         }
         else
         {
