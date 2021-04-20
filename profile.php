@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-<?php 
-    include_once('connection.php');
-    if(isset($_GET['user_id'])) {
-        $user_id = $_GET['user_id'];
-        $query = $connection->prepare("SELECT * FROM users WHERE user_id = ?");
-        $query -> execute([$user_id]);
-        $result = $query->fetch();
-    }
-?>
-=======
->>>>>>> 20be9236a04621c9150d026d35c66759c7c0f454
 <!doctype html>
 <html>
 <head>
@@ -31,6 +19,16 @@
 <body>
 <?php
     include 'nav.php';
+    include_once('connection.php');
+    if(isset($_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
+        $query = $connection->prepare("SELECT * FROM users WHERE user_id = ?");
+        $query -> execute([$user_id]);
+        $result = $query->fetch();
+    } else {
+        header("Location: potalatoweb.php");
+    }
+
 ?>
   <div class="container-fluid">
       <div class="row bg-beige justify-content-center">
