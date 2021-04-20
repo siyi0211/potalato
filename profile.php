@@ -1,5 +1,11 @@
-<?php
-include 'nav.php'
+<?php 
+    include_once('connection.php');
+    if(isset($_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
+        $query = $connection->prepare("SELECT * FROM users WHERE user_id = ?");
+        $query -> execute([$user_id]);
+        $result = $query->fetch();
+    }
 ?>
 <!doctype html>
 <html>
@@ -20,7 +26,9 @@ include 'nav.php'
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-    
+<?php
+    include 'nav.php';
+?>
   <div class="container-fluid">
       <div class="row bg-beige justify-content-center">
           <div class="row">
@@ -28,7 +36,7 @@ include 'nav.php'
                   <div class="col text-center px-0 my-0 py-4">
                           <div class="container borderimg"><img src="img/1601362881448109%20-%20Copy%20(2).jpg">
                           </div>
-                      <heading2-1 class="py-0 my-0">Beijng_duck</heading2-1>
+                      <heading2-1 class="py-0 my-0"><?php echo $result['user_name']; ?></heading2-1>
                   </div>
               </div>
           </div>
@@ -51,7 +59,7 @@ include 'nav.php'
         </div>
     </div>
     
-    <!content>
+    <!-- content -->
         <div class="container-fluid" style="padding: 30px">
             <div class="row  justify-content-center">
                 <div class="col-10">

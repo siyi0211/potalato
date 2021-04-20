@@ -1,12 +1,24 @@
 <?php
-
-    include 'connection.php';
+    include_once('connection.php');
+    
     if(isset($_GET['recipe_id'])){
 
         $recipeid = $_GET['recipe_id'];
         $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_id = ?");
         $query -> execute([$recipeid]);
         $result = $query->fetch();
+        
+        $favourite_button = "Add to My Favourite";
+        if (isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
+            $query = $connection -> prepare("SELECT * FROM `my favourite` WHERE user_id = ? AND recipe_id = ?");
+            $query -> execute([$user_id, $recipeid]);
+            $result = $query -> fetch();
+
+            if ($result) {
+                $favourite_button = "Remove from My Favourite";
+            }
+        }
 
     } else {
         header("Location: potalatoweb.php");
@@ -22,9 +34,7 @@
 <meta name="description" content="">
 <meta name="author" content="Yong Fen Yu">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-
 <title><?php echo $result['recipe_name']?></title>
-
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/fontawesome-all.css">
 <link rel="stylesheet" href="css/main.css">
@@ -34,9 +44,22 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+<style>
+    .button {
+        display: block;
+        width: 115px;
+        height: 25px;
+        background: #4E9CAF;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        line-height: 25px;
+    }
+</style>
 <?php
 include 'nav.php';
-
 ?>
     <!--content-->
     <div class="container-fluid">
@@ -62,7 +85,7 @@ include 'nav.php';
                         $ingredients = trim($ingredients);
                         echo $ingredients;
                         ?></p>
-                        <button type="submit" class="btn button-color mt-3">Add to My Favourite</button>
+                        <a href="favourite.php?" class="button"><?php echo $favourite_button; ?></a>
                     </div>
                 </div>
             </div>
