@@ -1,6 +1,3 @@
-<?php
-include 'nav.php'
-?>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +6,7 @@ include 'nav.php'
 <meta name="description" content="">
 <meta name="author" content="Yong Fen Yu">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Potalato</title>
+<title>Profile</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/fontawesome-all.css">
@@ -20,7 +17,9 @@ include 'nav.php'
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-    
+<?php
+include 'nav.php'
+?>
   <div class="container-fluid">
       <div class="row bg-beige justify-content-center">
           <div class="row">
