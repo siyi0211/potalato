@@ -135,3 +135,11 @@ search-container {
     border-radius: 50%;
     border: 4px;
 }
+
+pre {
+    white-space: pre-wrap;       
+    white-space: -moz-pre-wrap;  
+    white-space: -pre-wrap;      
+    white-space: -o-pre-wrap;    
+        
+ }
