@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
     include_once('connection.php');
     if(isset($_GET['user_id'])) {
@@ -7,6 +8,8 @@
         $result = $query->fetch();
     }
 ?>
+=======
+>>>>>>> 20be9236a04621c9150d026d35c66759c7c0f454
 <!doctype html>
 <html>
 <head>
@@ -15,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="Yong Fen Yu">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Potalato</title>
+<title>Profile</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/fontawesome-all.css">
