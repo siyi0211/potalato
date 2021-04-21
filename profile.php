@@ -18,23 +18,6 @@
 </head>
 <body>
 
-<!-- JavaScript -->
-<script>
-    let recipe = document.getElementById('recipe');
-    let favourite = document.getElementById('favourite');
-
-    function showRecipe() {
-        recipe.classList.remove('hidden');
-
-        favourite.classList.add('hidden');
-    } 
-
-    function showFavourite() {
-        favourite.classList.remove('hidden');
-
-        recipe.classList.add('hidden');
-    }
-</script>
 
 <!-- Extra Style -->
 <style>
@@ -89,10 +72,10 @@
         <div class="col-lg-12 text-center">
             <div class="row">
                 <div class="col">
-                    <a href="" class="btn" onclick="showRecipe()"><h3 class="heading2">My Recipes</h3></a>
+                    <a  class="btn" onclick="showRecipe()"><h3 class="heading2">My Recipes</h3></a>
                 </div>
                 <div class="col">
-                    <a href="" class="btn" onclick="showFavourite()"><h3 class="heading2">My Favourite</h3></a>
+                    <a class="btn" onclick="showFavourite()"><h3 class="heading2">My Favourite</h3></a>
                 </div>
             </div>
         </div>
@@ -160,6 +143,24 @@
         </div>
     </div>
     
-    
+    <!-- JavaScript -->
+    <script>
+        let recipe = document.getElementById('recipe');
+        let favourite = document.getElementById('favourite');
+
+        function showRecipe() {
+            recipe.classList.remove('hidden');
+
+            favourite.classList.add('hidden');
+        } 
+
+        function showFavourite() {
+            favourite.classList.remove('hidden');
+
+            recipe.classList.add('hidden');
+        }
+    </script>
+
+
     </body>
 </html>
