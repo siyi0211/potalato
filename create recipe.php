@@ -115,7 +115,7 @@
                         };
                     </script>
                 </div>
-                <button type="submit" name="submit" class="btn button-color mt-3">Submit Your Recipe</button>
+                <button type="submit" name="new" class="btn button-color mt-3">Submit Your Recipe</button>
                                                    
                 </form>
                     </div>

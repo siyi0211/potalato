@@ -17,17 +17,9 @@
 </head>
 <body>
 <style>
-    .button {
-        display: block;
-        width: 115px;
-        height: 25px;
-        background: #4E9CAF;
-        padding: 10px;
-        text-align: center;
-        border-radius: 5px;
-        color: white;
-        font-weight: bold;
-        line-height: 25px;
+    .favour-but {
+        color: black;
+        text-decoration: none;
     }
 </style>
 <?php
@@ -41,7 +33,8 @@
         $query -> execute([$recipeid]);
         $result = $query->fetch();
         
-        $favourite_button = "Add to My Favourite";
+        $favourite = false;
+
         if (isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
             $stmt = $connection -> prepare("SELECT * FROM `my favourite` WHERE user_id = ? AND recipe_id = ?");
@@ -49,7 +42,7 @@
             $data = $stmt -> fetch();
             if ($data) {
                 echo $user_id . "+" . $recipeid;
-                $favourite_button = "Remove from My Favourite";
+                $favourite = true;
             }
         }
 
@@ -82,7 +75,7 @@
                         $ingredients = trim($ingredients);
                         echo $ingredients;
                         ?></p>
-                        <button class="btn button-color mt-3"><a href="favourite.php?"><?php echo $favourite_button; ?></a></button>
+                        <button class="btn button-color mt-3"><a class="favour-but" href="favourite.php?favourite=<?php echo $favourite; ?>&recipe_id=<?php echo $recipeid; ?>"><?php if($favourite){ echo "Remove from My Favourite"; } else { echo "Add to My Favourite"; } ?></a></button>
                     </div>
                 </div>
             </div>
