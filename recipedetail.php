@@ -86,9 +86,10 @@
 
     
     <div class="row bg-nav pt-2">
-        <div class="col-lg-12 text-center" style="padding: 20px"><p>&copy;all right deserved to How Jue Min</p>
+        <div class="col-lg-12 text-center" style="padding: 20px">
+            <p>&copy;all right deserved to How Jue Min</p>
         </div>
-        </div>
+    </div>
 
     </body>
 </html>
