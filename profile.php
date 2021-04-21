@@ -17,6 +17,32 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<!-- JavaScript -->
+<script>
+    let recipe = document.getElementById('recipe');
+    let favourite = document.getElementById('favourite');
+
+    function showRecipe() {
+        recipe.classList.remove('hidden');
+
+        favourite.classList.add('hidden');
+    } 
+
+    function showFavourite() {
+        favourite.classList.remove('hidden');
+
+        recipe.classList.add('hidden');
+    }
+</script>
+
+<!-- Extra Style -->
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
 <?php
     include 'nav.php';
     include_once('connection.php');
@@ -50,7 +76,7 @@
           <div class="row">
               <div class="col px-0">
                   <div class="col text-center px-0 my-0 py-4">
-                          <div class="container borderimg"><img src="img/1601362881448109%20-%20Copy%20(2).jpg">
+                          <div class="container borderimg"><img src="img/webimg/default_profile_img.jpg">
                           </div>
                       <heading2-1 class="py-0 my-0"><?php echo $result['user_name']; ?></heading2-1>
                   </div>
@@ -63,10 +89,10 @@
         <div class="col-lg-12 text-center">
             <div class="row">
                 <div class="col">
-                    <a href="" class="btn"><h3 class="heading2">My Recipes</h3></a>
+                    <a href="" class="btn" onclick="showRecipe()"><h3 class="heading2">My Recipes</h3></a>
                 </div>
                 <div class="col">
-                    <a href="profilemyfavourite.html" class="btn"><h3 class="heading2">My Favourite</h3></a>
+                    <a href="" class="btn" onclick="showFavourite()"><h3 class="heading2">My Favourite</h3></a>
                 </div>
             </div>
         </div>
@@ -100,7 +126,7 @@
             </div>
         </div>
 
-        <div id="favourite" class="container-fluid" style="padding: 30px">
+        <div id="favourite" class="container-fluid hidden" style="padding: 30px">
             <div class="row  justify-content-center">
                 <div class="col-10">
                     <div class="container">
@@ -129,9 +155,11 @@
 
     
     <div class="row bg-nav pt-2">
-        <div class="col-lg-12 text-center" style="padding: 20px"><p>&copy;all right deserved to How Jue Min</p>
+        <div class="col-lg-12 text-center" style="padding: 20px">
+            <p>&copy;all right deserved to How Jue Min</p>
         </div>
-        </div>
-
+    </div>
+    
+    
     </body>
 </html>
