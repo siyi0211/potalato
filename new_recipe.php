@@ -42,51 +42,6 @@ function getImageFileName() {
 if (isset($_POST['new'])) {
     echo "From Post";
 
-    // move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], getImageFileName());
-
-    // // $user_name = $_POST['user_name'];
-    // $recipe_name = $_POST['recipe_name'];
-    // $description = $_POST['description'];
-    // $ingredients = $_POST['ingredients'];
-    // $directions = $_POST['directions'];
-    // $recipe_category = $_POST['recipe_category'];
-    // $cooking_style = $_POST['cooking_style'];
-
-
-    // // If the $_FILES is not empty
-    // if (!empty($_FILES["imageToUpload"]["name"])) {
-        
-    //     // If the image pass those condition
-    //     if (checkImageFile()) {
-    //         echo "Pass Condition";
-
-    //         if (isset($_POST['new'])) {
-
-    //             $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-
-    //         } else if (isset($_POST['edit'])) {
-
-                
-
-    //         } else {
-    //             echo 'why are you here';
-    //         }
-            
-    //     } else {
-    //         echo "Error";
-    //     }
-
-    // } else{
-    //     // Edit Recipe with No New Image
-    //     if (isset($_POST['edit'])) {
-    //         echo "Update without image";
-    //         $query = $connection -> prepare('UPDATE recipe SET recipe_name, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?)');
-
-    //     } else {
-    //         echo "update with new ??";
-    //     }
-    // }
-
 
     if (!checkImageFile()) {
         echo "File not upload";
