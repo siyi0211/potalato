@@ -25,15 +25,16 @@ include 'nav.php'
     include 'connection.php';
     if($_SERVER["REQUEST_METHOD"] == "POST") {
 	 
+        $is_admin = $_POST["is_admin"];
         $username = $_POST["username"];
         $email = $_POST["email"];
         $password = $_POST["password"];
         
         $hash_password = password_hash($password,PASSWORD_DEFAULT);
         
-        $query = $connection->prepare("INSERT INTO users (user_name, user_email, user_password) VALUES (?,?,?)");
+        $query = $connection->prepare("INSERT INTO users (user_name, user_email, user_password, is_admin) VALUES (?,?,?,?)");
         
-        $result = $query->execute([$username, $email, $hash_password]);
+        $result = $query->execute([$username, $email, $hash_password, $is_admin]);
 
         if ($result){
 
@@ -63,6 +64,7 @@ include 'nav.php'
                         <div class="col-lg-6 text-center" style="padding: 20px">
                             <heading1-1>Sign Up</heading1-1><br><br>
                             <form action="sign up.php"  method="post">
+                                <input type="hidden" class="form-control mr-sm-2" id="is_admin"  name="is_admin" value="0"><br>
                                 <input type="text" class="form-control mr-sm-2" id="username" placeholder="Username" name="username" required><br>
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 <input type="text" class="form-control mr-sm-2" id="email" placeholder="Email" name="email" required><br>

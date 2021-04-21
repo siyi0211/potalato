@@ -1,6 +1,6 @@
 <?php
 include_once('connection.php');
-
+session_start();
 
 function checkImageFile() {
     $target_folder = "img/webimg/";
@@ -112,8 +112,13 @@ if (isset($_POST['new'])) {
         if ($result) {
             echo "Successful";
 
-            $last_id = $connection -> lastInsertId();
-            header("Location: recipedetail.php?recipe_id=".$last_id);
+            if (!isset($_SESSION['is_admin'])){
+                $last_id = $connection -> lastInsertId();
+                header("Location: recipedetail.php?recipe_id=".$last_id);
+            }
+            else{
+                header("Location: potalato_admin.php");
+            }
                         
         } else {
             echo "Failed";
