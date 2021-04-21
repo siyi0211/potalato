@@ -56,8 +56,13 @@ include 'nav.php'
 
 include 'connection.php';
 
-$query = $connection->prepare("SELECT * FROM recipe");
-$query -> execute();
+if (isset($_SESSION['is_admin'])){
+    $query = $connection->prepare("SELECT * FROM recipe");
+    $query -> execute();
+}else{
+    header("Location:login.php");
+}
+
 
 ?>
 <h1 style="text-align:center;"> Recipes</h1>

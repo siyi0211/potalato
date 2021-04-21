@@ -21,14 +21,14 @@
 	include 'nav.php';
 ?>
 <?php
-    if (!isset($_SESSION['user_name'])) {
-        header("Location: potalatoweb.php");
+    if (!isset($_SESSION['is_admin'])) {
+        header("Location: login.php");
     }
 ?>
 <?php
 
 include 'connection.php';
-if(isset($_GET['recipe_id'])){
+if(isset($_GET['recipe_id'])){  //get recipe detail
 
     $recipeid = $_GET['recipe_id'];
     $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_id = ?");
@@ -36,8 +36,61 @@ if(isset($_GET['recipe_id'])){
     $result = $query->fetch();
 
 } else {
-    header("Location: potalatoweb.php");
+    header("Location: potalato_admin.php");
 }
+
+if (isset($_POST['edit'])) {  //update recipe
+
+    $target_folder = "img/webimg/";
+
+    $isEverythingOK = true;
+
+    $target_file = $target_folder . basename($_FILES["imageToUpload"]["name"]);
+
+    $file_name = strtolower(pathinfo($target_file, PATHINFO_FILENAME));
+
+    $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    $new_image_filename = $target_folder . $file_name . time() . "." . $file_extension;
+    
+    if ($file_extension != "jpg" && $file_extension != "webp" && $file_extension != "png" && $file_extension != "gif") {
+        echo "Sorry, image only";
+        $isEverythingOK = false;
+    } 
+    if ($_FILES["imageToUpload"]["size"] > 100000000) {
+        echo "File too big";
+        $isEverythingOK = false;
+    }
+
+    if (!$isEverythingOK) {
+        echo "File not upload";
+    } else {
+        
+        move_uploaded_file($_FILES["imageToUpload"]["tmp_name"],$new_image_filename);
+
+        $create_user = $_POST['create_user'];
+        $recipe_id = $_POST['recipe_id'];
+        $recipe_name = $_POST['recipe_name'];
+        $description = $_POST['description'];
+        $ingredients = $_POST['ingredients'];
+        $directions = $_POST['directions'];
+        $recipe_category = $_POST['recipe_category'];
+        $cooking_style = $_POST['cooking_style'];
+
+        $query = $connection -> prepare("UPDATE recipe SET recipe_name='$recipe_name', recipe_img='$new_image_filename', recipe_description='$description', 
+        recipe_ingredients='$ingredients', recipe_category='$recipe_category', recipe_cooking_style='$cooking_style', recipe_directions='$directions', 
+        create_user='$create_user' WHERE recipe_id='$recipe_id'");
+
+        $result = $query -> execute();
+
+        if ($result) {
+            header("Location:potalato_admin.php");
+        } else {
+            echo "Failed";
+        }
+    }
+
+    } 
 ?>
     <!-- Create Recipe -->
     <div class="container-fluid">
@@ -49,10 +102,10 @@ if(isset($_GET['recipe_id'])){
                 <!-- Create Recipe -->
 			     <heading1-1>Edit Recipe</heading1-1>
 
-                 <input type="hidden" name="user_name" value="<?php echo $_SESSION['user_name']; ?>">
-
-			     <form action="new_recipe.php" method="post" enctype="multipart/form-data">
+			     <form action="edit_recipe.php" method="post" enctype="multipart/form-data">
 			     
+                <input type="hidden" name="recipe_id" value="<?php echo $result['recipe_id']?>">
+                
 			     <div class="form-group">	
                  <h2>Recipe Name: </h2>
 			        <input type="text" class="form-control mr-sm-2" id="recipe_name" placeholder="Recipe Name" name="recipe_name" value="<?php echo $result['recipe_name']?>" required>
@@ -111,11 +164,11 @@ if(isset($_GET['recipe_id'])){
                     <label for="vegetarian">Vegetarian</label>
                     <br>
 
-                    <input type="radio" id="asian_style" name="cooking_style" value="Asian Style" <?php if ($result['recipe_cooking_style'] == 'Asian style'){echo ' checked="checked"';}  ?>>
+                    <input type="radio" id="asian_style" name="cooking_style" value="Asian style" <?php if ($result['recipe_cooking_style'] == 'Asian style'){echo ' checked="checked"';}  ?>>
                     <label for="asian_style">Asian Style</label>
                     <br>
 
-                    <input type="radio" id="western_style" name="cooking_style" value="Western Style" <?php if ($result['recipe_cooking_style'] == 'Western style'){echo ' checked="checked"';}  ?>>
+                    <input type="radio" id="western_style" name="cooking_style" value="Western style" <?php if ($result['recipe_cooking_style'] == 'Western style'){echo ' checked="checked"';}  ?>>
                     <label for="western_style">Western Style</label>
                     <br>
                 </div>
