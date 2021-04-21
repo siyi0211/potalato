@@ -41,25 +41,27 @@ if(isset($_GET['recipe_id'])){  //get recipe detail
 
 if (isset($_POST['edit'])) {  //update recipe
 
-    $target_folder = "img/webimg/";
-
     $isEverythingOK = true;
 
-    $target_file = $target_folder . basename($_FILES["imageToUpload"]["name"]);
+    if ($_FILES["imageToUpload"]["name"]) {
+        $target_folder = "img/webimg/";
 
-    $file_name = strtolower(pathinfo($target_file, PATHINFO_FILENAME));
-
-    $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    $new_image_filename = $target_folder . $file_name . time() . "." . $file_extension;
+        $target_file = $target_folder . basename($_FILES["imageToUpload"]["name"]);
     
-    if ($file_extension != "jpg" && $file_extension != "webp" && $file_extension != "png" && $file_extension != "gif") {
-        echo "Sorry, image only";
-        $isEverythingOK = false;
-    } 
-    if ($_FILES["imageToUpload"]["size"] > 100000000) {
-        echo "File too big";
-        $isEverythingOK = false;
+        $file_name = strtolower(pathinfo($target_file, PATHINFO_FILENAME));
+    
+        $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    
+        $new_image_filename = $target_folder . $file_name . time() . "." . $file_extension;
+        
+        if ($file_extension != "jpg" && $file_extension != "webp" && $file_extension != "png" && $file_extension != "gif") {
+            echo "Sorry, image only";
+            $isEverythingOK = false;
+        } 
+        if ($_FILES["imageToUpload"]["size"] > 100000000) {
+            echo "File too big";
+            $isEverythingOK = false;
+        }    
     }
 
     if (!$isEverythingOK) {
@@ -77,9 +79,12 @@ if (isset($_POST['edit'])) {  //update recipe
         $recipe_category = $_POST['recipe_category'];
         $cooking_style = $_POST['cooking_style'];
 
-        $query = $connection -> prepare("UPDATE recipe SET recipe_name='$recipe_name', recipe_img='$new_image_filename', recipe_description='$description', 
-        recipe_ingredients='$ingredients', recipe_category='$recipe_category', recipe_cooking_style='$cooking_style', recipe_directions='$directions', 
-        create_user='$create_user' WHERE recipe_id='$recipe_id'");
+        if ($_FILES['imageToUpload']['name']) {
+            $query = $connection -> prepare("UPDATE recipe SET recipe_name='$recipe_name', recipe_img='$new_image_filename', recipe_description='$description', recipe_ingredients='$ingredients', recipe_category='$recipe_category', recipe_cooking_style='$cooking_style', recipe_directions='$directions', create_user='$create_user' WHERE recipe_id='$recipe_id'");
+        } else {
+            $query = $connection -> prepare("UPDATE recipe SET recipe_name='$recipe_name', recipe_description='$description', recipe_ingredients='$ingredients', recipe_category='$recipe_category', recipe_cooking_style='$cooking_style', recipe_directions='$directions', create_user='$create_user' WHERE recipe_id='$recipe_id'");
+
+        }
 
         $result = $query -> execute();
 
@@ -176,7 +181,7 @@ if (isset($_POST['edit'])) {  //update recipe
                 <div class="form-group txt_field1">
                     <label class="heading3">Upload Photo</label>
                     <br>
-                    <input type="file" id="imageToUpload" name="imageToUpload" accept="image/*" onchange="loadImage(event)" required>
+                    <input type="file" id="imageToUpload" name="imageToUpload" accept="image/*" onchange="loadImage(event)">
                     <img id="output" src="<?php echo $result['recipe_img']?>" style="width:300px">
                     <script>
                         var loadImage = function(event) {

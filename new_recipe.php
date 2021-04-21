@@ -39,91 +39,86 @@ function getImageFileName() {
 }
 
 // If post for 'new' or 'edit'
-if (isset($_POST['new']) || isset($_POST['edit']) ) {
+if (isset($_POST['new'])) {
     echo "From Post";
 
-    move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], getImageFileName());
+    // move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], getImageFileName());
 
-    // $user_name = $_POST['user_name'];
-    $recipe_name = $_POST['recipe_name'];
-    $description = $_POST['description'];
-    $ingredients = $_POST['ingredients'];
-    $directions = $_POST['directions'];
-    $recipe_category = $_POST['recipe_category'];
-    $cooking_style = $_POST['cooking_style'];
+    // // $user_name = $_POST['user_name'];
+    // $recipe_name = $_POST['recipe_name'];
+    // $description = $_POST['description'];
+    // $ingredients = $_POST['ingredients'];
+    // $directions = $_POST['directions'];
+    // $recipe_category = $_POST['recipe_category'];
+    // $cooking_style = $_POST['cooking_style'];
 
 
-    // If the $_FILES is not empty
-    if (!empty($_FILES["imageToUpload"]["name"])) {
+    // // If the $_FILES is not empty
+    // if (!empty($_FILES["imageToUpload"]["name"])) {
         
-        // If the image pass those condition
-        if (checkImageFile()) {
-            echo "Pass Condition";
+    //     // If the image pass those condition
+    //     if (checkImageFile()) {
+    //         echo "Pass Condition";
 
-            if (isset($_POST['new'])) {
+    //         if (isset($_POST['new'])) {
 
-                $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    //             $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
 
-            } else if (isset($_POST['edit'])) {
+    //         } else if (isset($_POST['edit'])) {
 
                 
 
-            } else {
-                echo 'why are you here';
-            }
-            
-        } else {
-            echo "Error";
-        }
-
-    } else{
-        // Edit Recipe with No New Image
-        if (isset($_POST['edit'])) {
-            echo "Update without image";
-            $query = $connection -> prepare('UPDATE recipe SET recipe_name, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?)');
-
-        } else {
-            echo "update with new ??";
-        }
-    }
-
-
-    // if (!$isEverythingOK ) {
-    //     echo "File not upload";
-    // } else {
-        
-    //     include_once 'connection.php';
-
-    //     move_uploaded_file($_FILES["imageToUpload"]["tmp_name"],$new_image_filename);
-
-    //     $user_name = $_POST['user_name'];
-    //     $recipe_name = $_POST['recipe_name'];
-    //     $description = $_POST['description'];
-    //     $ingredients = $_POST['ingredients'];
-    //     $directions = $_POST['directions'];
-    //     $recipe_category = $_POST['recipe_category'];
-    //     $cooking_style = $_POST['cooking_style'];
-
-    //     $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-
-    //     $result = $query -> execute([$recipe_name, $new_image_filename, $description, $ingredients, $recipe_category, $cooking_style, $directions, $user_name]);
-
-    //     if ($result) {
-    //         echo "Successful";
-    //         if(!isset($_SESSION['is_admin'])){
-
-    //             $last_id = $connection -> lastInsertId();
-    //             header("Location: recipedetail.php?recipe_id=".$last_id);
-    //         }
-    //         else{
-
-    //             header("Location:potalato_admin.php");
+    //         } else {
+    //             echo 'why are you here';
     //         }
             
     //     } else {
-    //         echo "Failed";
+    //         echo "Error";
+    //     }
+
+    // } else{
+    //     // Edit Recipe with No New Image
+    //     if (isset($_POST['edit'])) {
+    //         echo "Update without image";
+    //         $query = $connection -> prepare('UPDATE recipe SET recipe_name, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?)');
+
+    //     } else {
+    //         echo "update with new ??";
     //     }
     // }
+
+
+    if (!checkImageFile()) {
+        echo "File not upload";
+
+    } else {
+        
+        include_once 'connection.php';
+
+        move_uploaded_file($_FILES["imageToUpload"]["tmp_name"],$new_image_filename);
+
+        $user_name = $_POST['user_name'];
+        $recipe_name = $_POST['recipe_name'];
+        $description = $_POST['description'];
+        $ingredients = $_POST['ingredients'];
+        $directions = $_POST['directions'];
+        $recipe_category = $_POST['recipe_category'];
+        $cooking_style = $_POST['cooking_style'];
+
+        $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+
+        $result = $query -> execute([$recipe_name, $new_image_filename, $description, $ingredients, $recipe_category, $cooking_style, $directions, $user_name]);
+
+        if ($result) {
+            echo "Successful";
+
+            $last_id = $connection -> lastInsertId();
+            header("Location: recipedetail.php?recipe_id=".$last_id);
+                        
+        } else {
+            echo "Failed";
+        }
+    }
 
 } else {
     header("Location: potalatoweb.php");

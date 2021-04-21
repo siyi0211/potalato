@@ -54,7 +54,7 @@
             <li class="nav-item dropdown right">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><?php echo $_SESSION['user_name'];?></a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="profile.php">Profile</a>
+                <a class="dropdown-item" href="profile.php?user_id=<?php echo $_SESSION['user_id']?>">Profile</a>
                 <a class="dropdown-item" href="create%20recipe.php">Create Recipe</a>
                 <a class="dropdown-item" href="#">My Favourite</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>
