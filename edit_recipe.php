@@ -49,10 +49,10 @@ if(isset($_GET['recipe_id'])){
                 <!-- Create Recipe -->
 			     <heading1-1>Edit Recipe</heading1-1>
 
+                 <input type="hidden" name="user_name" value="<?php echo $_SESSION['user_name']; ?>">
+
 			     <form action="new_recipe.php" method="post" enctype="multipart/form-data">
 			     
-                <input type="hidden" name="user_name" value="<?php echo $_SESSION['user_name']; ?>">
-                
 			     <div class="form-group">	
                  <h2>Recipe Name: </h2>
 			        <input type="text" class="form-control mr-sm-2" id="recipe_name" placeholder="Recipe Name" name="recipe_name" value="<?php echo $result['recipe_name']?>" required>
