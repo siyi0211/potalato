@@ -29,6 +29,21 @@
         header("Location: potalatoweb.php");
     }
 
+    function getAllRecipes($conn) {
+        $stmt = $conn -> prepare("SELECT * FROM recipe WHERE create_user = ?");
+        $stmt -> execute([$_SESSION["user_name"]]);
+        return $stmt;
+    }
+
+    function getAllFavourite($conn) {
+        $stmt = $conn -> prepare("SELECT * FROM recipe INNER JOIN `my favourite` ON `my favourite`.`recipe_id` = `recipe`.`recipe_id` WHERE `my favourite`.`user_id` = ?");
+        $stmt -> execute([$_SESSION["user_id"]]);
+        return $stmt;
+    }
+
+    $userRecipe = getAllRecipes($connection);
+    $userFavourite = getAllFavourite($connection);
+
 ?>
   <div class="container-fluid">
       <div class="row bg-beige justify-content-center">
@@ -47,40 +62,71 @@
     <div class="row bg-profile">
         <div class="col-lg-12 text-center">
             <div class="row">
-                <div class="col-4">
-                    <a href="#" class="btn"><h3 class="heading2">My Recipes</h3></a>
+                <div class="col">
+                    <a href="" class="btn"><h3 class="heading2">My Recipes</h3></a>
                 </div>
-                <div class="col-4">
-                    <a href="#" class="btn"><h3 class="heading2">My Posts</h3></a>
-                </div>
-                <div class="col-4">
+                <div class="col">
                     <a href="profilemyfavourite.html" class="btn"><h3 class="heading2">My Favourite</h3></a>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- content -->
-        <div class="container-fluid" style="padding: 30px">
+    <!-- Content -->
+        <div id="recipe" class="container-fluid" style="padding: 30px">
             <div class="row  justify-content-center">
                 <div class="col-10">
                     <div class="container">
                         <div class="row">
+                        <?php
+                            while ($result = $userRecipe->fetch()){
+                        ?>
                             <div class="col-3">
-                                <div class="card">
-                                    <img class="card-img-top" src="img/webimg/Creamy-Mashed-Potato_8-copy.jpg" alt="Card image" height="200px">
-                                    <div class="card-body" style="padding-top: 2px">
-                                        <h4 class="card-title heading3">Mashed Potato</h4>
-                                        <p>By France C</p>
-                                        <a href="#" class="stretched-link"></a>
+                                    <div class="card">
+                                        <img class="card-img-top" src="<?php echo ($result['recipe_img'])?>" alt="Card image" height="200px">
+                                        <div class="card-body" style="padding-top: 2px">
+                                            <h4 class="card-title heading3"><?php echo $result['recipe_name']?></h4>
+                                            <p>By <?php echo $result['create_user']?></p>
+                                            <a href="recipedetail.php?recipe_id=<?php echo ($result['recipe_id'])?>" class="stretched-link"></a>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
+                        <?php 
+                            }
+                        ?> 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="favourite" class="container-fluid" style="padding: 30px">
+            <div class="row  justify-content-center">
+                <div class="col-10">
+                    <div class="container">
+                        <div class="row">
+                        <?php
+                            while ($result = $userFavourite->fetch()){
+                        ?>
+                            <div class="col-3">
+                                    <div class="card">
+                                        <img class="card-img-top" src="<?php echo ($result['recipe_img'])?>" alt="Card image" height="200px">
+                                        <div class="card-body" style="padding-top: 2px">
+                                            <h4 class="card-title heading3"><?php echo $result['recipe_name']?></h4>
+                                            <p>By <?php echo $result['create_user']?></p>
+                                            <a href="recipedetail.php?recipe_id=<?php echo ($result['recipe_id'])?>" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                            </div>
+                        <?php 
+                            }
+                        ?> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     
     <div class="row bg-nav pt-2">
         <div class="col-lg-12 text-center" style="padding: 20px"><p>&copy;all right deserved to How Jue Min</p>
