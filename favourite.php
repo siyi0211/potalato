@@ -30,6 +30,7 @@ if (isset($_GET['recipe_id']) && isset($_GET['favourite'])) {
                 echo "\n" . $error->getMessage;
             }
         }
+        header("Location: recipedetail.php?recipe_id=".$recipe_id);
     
     // Bring to login if not yet login
     } else {
