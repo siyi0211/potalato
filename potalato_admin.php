@@ -57,11 +57,23 @@ include 'nav.php'
 include 'connection.php';
 
 if (isset($_SESSION['is_admin'])){
-    $query = $connection->prepare("SELECT * FROM recipe");
+    if(isset($_GET['search'])){
+        $searchq = $_GET['search'];
+        
+        $searchq = preg_replace ("#[^0-9a-z]#i","",$searchq);
+        
+        $query = $connection->prepare("SELECT * FROM recipe WHERE recipe_name LIKE '%$searchq%' OR recipe_category LIKE '%$searchq%' OR recipe_cooking_style LIKE '%$searchq%';");
+            
+    }else{
+        $query = $connection->prepare("SELECT * FROM recipe");
+    }
+    
     $query -> execute();
 }else{
     header("Location:login.php");
 }
+
+
 
 
 ?>
