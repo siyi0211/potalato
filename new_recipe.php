@@ -95,7 +95,7 @@ if (isset($_POST['new'])) {
         
         include_once 'connection.php';
 
-        move_uploaded_file($_FILES["imageToUpload"]["tmp_name"],$new_image_filename);
+        move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], getImageFileName);
 
         $user_name = $_POST['user_name'];
         $recipe_name = $_POST['recipe_name'];
@@ -107,7 +107,7 @@ if (isset($_POST['new'])) {
 
         $query = $connection -> prepare('INSERT INTO recipe (recipe_name, recipe_img, recipe_description, recipe_ingredients, recipe_category, recipe_cooking_style, recipe_directions, create_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
 
-        $result = $query -> execute([$recipe_name, $new_image_filename, $description, $ingredients, $recipe_category, $cooking_style, $directions, $user_name]);
+        $result = $query -> execute([$recipe_name, getImageFileName, $description, $ingredients, $recipe_category, $cooking_style, $directions, $user_name]);
 
         if ($result) {
             echo "Successful";
