@@ -159,7 +159,16 @@
 
             recipe.classList.add('hidden');
         }
+        <?php
+        if (isset($_GET['favourite'])) {
+        ?>
+        showFavourite();
+        <?php
+        }
+        ?>
+
     </script>
+
 
 
     </body>
