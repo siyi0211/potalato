@@ -78,7 +78,7 @@
                         $ingredients = trim($ingredients);
                         echo $ingredients;
                         ?></p>
-                        <button class="btn button-color mt-3"><a class="favour-but" href="favourite.php?favourite=<?php echo $favourite; ?>&recipe_id=<?php echo $recipeid; ?>"><?php if($favourite){ echo "Remove from My Favourite"; } else { echo "Add to My Favourite"; } ?></a></button>
+                        <a class="favour-but" href="favourite.php?favourite=<?php echo $favourite; ?>&recipe_id=<?php echo $recipeid; ?>"><button class="btn button-color mt-3"><?php if($favourite){ echo "Remove from My Favourite"; } else { echo "Add to My Favourite"; } ?></button></a>
                     </div>
                 </div>
             </div>
