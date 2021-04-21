@@ -6,7 +6,6 @@
 <meta name="description" content="">
 <meta name="author" content="Yong Fen Yu">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title><?php echo $result['recipe_name']?></title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/fontawesome-all.css">
 <link rel="stylesheet" href="css/main.css">
@@ -51,7 +50,11 @@
     }
 
 ?>
+
+    <title><?php echo $result['recipe_name']?></title>
+    
     <!--content-->
+    
     <div class="container-fluid">
         <div class="row bg-beige justify-content-center">
             <div class="col-10">
