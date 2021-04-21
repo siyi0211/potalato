@@ -15,7 +15,7 @@ if (isset($_GET['recipe_id']) && isset($_GET['favourite'])) {
             echo "removing";
             try {
                 $query = $connection->prepare("DELETE FROM `my favourite` WHERE user_id = ? AND recipe_id = ?");
-                $query -> exec([$_SESSION['user_id'], $recipe_id]);
+                $query -> execute([$_SESSION['user_id'], $recipe_id]);
             } catch (PDOException $error) {
                 echo "\n" . $error->getMessage;
             }
@@ -24,8 +24,8 @@ if (isset($_GET['recipe_id']) && isset($_GET['favourite'])) {
         } else {
             echo "adding";
             try{
-                $query = $connection -> prepare("INSERT INTO `my favourite` (user_id, recipe_id) VALUES (?, ?)");
-                $query -> exec([$_SESSION['user_id'], $recipe_id]);
+                $query = $connection -> prepare("INSERT INTO `my favourite` (`user_id`, `recipe_id`) VALUES (?, ?)");
+                $query -> execute([$_SESSION['user_id'], $recipe_id]);
             } catch (PDOException $error) {
                 echo "\n" . $error->getMessage;
             }
