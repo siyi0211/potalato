@@ -1,7 +1,6 @@
 <?php
-if (isset($_POST['submit'])) {
-    echo "From Post";
 
+function checkImageFile() {
     $target_folder = "img/webimg/";
 
     $isEverythingOK = true;
@@ -22,6 +21,12 @@ if (isset($_POST['submit'])) {
         echo "File too big";
         $isEverythingOK = false;
     }
+
+}
+
+if (isset($_POST['new'])) {
+    echo "From Post";
+
 
     if (!$isEverythingOK) {
         echo "File not upload";

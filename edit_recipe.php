@@ -136,7 +136,7 @@ if(isset($_GET['recipe_id'])){
                         };
                     </script>
                 </div>
-                <button type="submit" name="submit" class="btn button-color mt-3">Edit Recipe</button>
+                <button type="submit" name="edit" class="btn button-color mt-3">Edit Recipe</button>
                                                    
                 </form>
                     </div>
